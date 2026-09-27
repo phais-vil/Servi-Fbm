@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sarabun } from "next/font/google";
+import { Inter, Sarabun, Syne, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -13,6 +13,8 @@ import { auth, resolvePalette } from "@/features/identity/server";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin", "latin-ext"] });
 const sarabun = Sarabun({ variable: "--font-sarabun", subsets: ["thai", "latin"], weight: ["300", "400", "500", "600", "700", "800"], display: "swap" });
+const syne = Syne({ variable: "--font-syne", subsets: ["latin"], weight: ["700", "800"], display: "swap" });
+const spaceGrotesk = Space_Grotesk({ variable: "--font-space", subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
@@ -24,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = cookieLocale ?? session?.locale ?? DEFAULT_LOCALE; // spec B7: login จากเครื่องใหม่ได้ภาษาที่ผู้ใช้เคยเลือก
   return (
     <html lang={locale} data-palette={palette} suppressHydrationWarning>
-      <body className={`${inter.variable} ${sarabun.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${sarabun.variable} ${syne.variable} ${spaceGrotesk.variable} font-sans antialiased`} suppressHydrationWarning>
         <div className="bg" aria-hidden="true" />
         <I18nProvider locale={locale} messages={UI_MESSAGES}>
           <SessionProvider>

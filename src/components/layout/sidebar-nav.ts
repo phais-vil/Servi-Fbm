@@ -1,6 +1,13 @@
-import { LayoutDashboard, Users, Settings, Layers, type LucideIcon } from "lucide-react";
+import { LayoutDashboard, Users, Settings, Layers, Newspaper, GraduationCap, BookOpen, FileText, CalendarDays, Award, CheckSquare, type LucideIcon } from "lucide-react";
 import { hasPermission, P } from "@/features/identity";
 import { SAMPLE_P } from "@/features/sample";
+import { NEWS_P } from "@/features/news";
+import { STAFF_P } from "@/features/staff";
+import { CURRICULUM_P } from "@/features/curriculum";
+import { DOCUMENT_P } from "@/features/documents";
+import { ROOMS_P } from "@/features/rooms";
+import { SERVICES_P } from "@/features/services";
+import { ATTENDANCE_P } from "@/features/attendance";
 
 export interface NavItem {
   /** i18n key */
@@ -16,6 +23,34 @@ export interface NavCrumb { title: string; href: string }
 
 export const sidebarGroups: NavGroup[] = [
   { label: "nav.group.overview", items: [{ title: "nav.dashboard", href: "/dashboard", icon: LayoutDashboard }] },
+  {
+    label: "roles.module.news",
+    items: [{ title: "news.nav", href: "/admin/news", icon: Newspaper, permission: NEWS_P.newsRead }],
+  },
+  {
+    label: "roles.module.staff",
+    items: [{ title: "staff.nav", href: "/admin/staff", icon: GraduationCap, permission: STAFF_P.staffRead }],
+  },
+  {
+    label: "roles.module.curriculum",
+    items: [{ title: "curriculum.nav", href: "/admin/programs", icon: BookOpen, permission: CURRICULUM_P.curriculumRead }],
+  },
+  {
+    label: "roles.module.document",
+    items: [{ title: "documents.nav", href: "/admin/documents", icon: FileText, permission: DOCUMENT_P.documentReview }],
+  },
+  {
+    label: "roles.module.rooms",
+    items: [{ title: "rooms.nav", href: "/admin/rooms", icon: CalendarDays, permission: ROOMS_P.roomsManage }],
+  },
+  {
+    label: "roles.module.services",
+    items: [{ title: "services.nav", href: "/admin/services", icon: Award, permission: SERVICES_P.servicesManage }],
+  },
+  {
+    label: "roles.module.attendance",
+    items: [{ title: "attendance.nav", href: "/admin/attendance", icon: CheckSquare, permission: ATTENDANCE_P.attendanceManage }],
+  },
   {
     label: "nav.group.sample",
     items: [{ title: "sample.nav", href: "/sample", icon: Layers, permission: SAMPLE_P.sampleRead }],
